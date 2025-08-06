@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: reverse-shell
+spec:
+  containers:
+  - name: attacker
+    image: bash
+    command: ["/bin/bash", "-c", "whoami"]
+    securityContext:
+      privileged: true
+  restartPolicy: Never
