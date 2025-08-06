@@ -1,12 +1,10 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: reverse-shell
+  name: token-dumper
 spec:
   containers:
-  - name: attacker
-    image: bash
-    command: ["/bin/bash", "-c", "whoami"]
-    securityContext:
-      privileged: true
+  - name: dumper
+    image: alpine:latest
+    command: ["/bin/sh", "-c", "cat /var/run/secrets/kubernetes.io/serviceaccount/token; sleep 30"]
   restartPolicy: Never
